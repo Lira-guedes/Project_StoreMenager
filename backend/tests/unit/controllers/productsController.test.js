@@ -1,28 +1,47 @@
 const sinon = require('sinon');
 const chai = require('chai');
-const { productsMock } = require('../mocks/productsMock');
+const sinonChai = require('sinon-chai');
+const productsMock = require('../mocks/productsMock');
 const productsController = require('../../../src/controllers/productsController');
+const productsService = require('../../../src/services/productsService');
+
+chai.use(sinonChai);
 
 const { expect } = chai;
 
 describe('Controller Products tests', function () {
   it('Retorna status 200 quando encontra produto com sucesso', async function () {
-    sinon.stub(productsController, 'findAllController').resolves([productsMock]);
-    const res = await productsController.findAllController();
+    sinon.stub(productsService, 'findAllService').resolves(productsMock.productsServiceMock);
+    const req = {};
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+    await productsController.findAllController(req, res);
 
     expect(res.status).to.have.been.calledWith(200);
   });
     it('Retorna status 200 quando encontra produto pelo id com sucesso', async function () {
-    sinon.stub(productsController, 'findAllController').resolves([productsMock]);
-    const res = await productsController.findAllController(1);
+    sinon.stub(productsService, 'findAllService').resolves(productsMock.productsServiceMock);
+    const req = { params: { id: 1 } };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+    await productsController.findByIdController(req, res);
 
     expect(res.status).to.have.been.calledWith(200); 
 });
     it('Retorna status 404 quando não encontra produto', async function () {
-    sinon.stub(productsController, 'findAllController').resolves([productsMock]);
-    const res = await productsController.findAllController();
+    sinon.stub(productsService, 'findAllService').resolves(productsMock.productsServiceNotFoundMock);
+    const req = { params: { id: 99 } };
+     const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+    await productsController.findAllController(req, res);
 
-    expect(res.status).to.have.been.calledWith(200); 
+    expect(res.status).to.have.been.calledWith(404);
 });
   afterEach(function () {
     sinon.restore();

@@ -11,7 +11,10 @@ const findByIdService = async (id) => {
   return { status: 'SUCCESSFUL', data: products };
 };
 
+const postNewProducts = (name) => productsModel.postProductsModel(name);
+
 module.exports = {
   findAllService,
   findByIdService,
+  postNewProducts,
 };
