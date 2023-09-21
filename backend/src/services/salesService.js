@@ -7,7 +7,7 @@ const findAllSalesService = async () => {
 
 const findByIdSalesService = async (id) => {
   const sale = await salesModel.findByIdSalesModel(id);
-  if (!sale) return { status: 'NOT_FOUND', data: { message: 'Sale not found' } };
+  if (sale.length === 0) return { status: 'NOT_FOUND', data: { message: 'Sale not found' } };
   return { status: 'SUCCESSFUL', data: sale };
 };
 

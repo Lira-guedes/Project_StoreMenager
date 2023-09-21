@@ -20,7 +20,7 @@ describe('Service Sales tests', function () {
     expect(res).to.be.deep.equal(salesMock.salesIdServiceMock);
   });
     it('Retorna venda pelo id sem sucesso', async function () {
-    sinon.stub(salesModel, 'findByIdSalesModel').resolves(undefined);
+    sinon.stub(salesModel, 'findByIdSalesModel').resolves([]);
     const res = await salesService.findByIdSalesService(99);
 
     expect(res).to.be.deep.equal({ status: 'NOT_FOUND', data: { message: 'Sale not found' } });

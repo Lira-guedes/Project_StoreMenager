@@ -18,8 +18,8 @@ describe('Model Sales tests', function () {
     sinon.stub(connection, 'execute').resolves([salesMock.sales]);
     const res = await salesModel.findByIdSalesModel(1);
      
-    expect(res).to.be.an('object');
-    expect(res).to.be.deep.equal(salesMock.sales[0]);
+    expect(res).to.be.an('array');
+    expect(res).to.be.deep.equal(salesMock.sales);
   });
   afterEach(function () {
     sinon.restore();

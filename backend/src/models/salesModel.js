@@ -10,10 +10,10 @@ SELECT sp.sale_id AS saleId, s.date, sp.product_id AS productId, sp.quantity
 };
 
 const findByIdSalesModel = async (id) => {
-  const [[sales]] = await connection.execute(`
+  const [sales] = await connection.execute(`
   SELECT S.date, SP.product_id AS productId, SP.quantity
-    FROM sales_products AS SP
-    JOIN sales AS S ON SP.sale_id = S.id
+    FROM StoreManager.sales_products AS SP
+    JOIN StoreManager.sales AS S ON SP.sale_id = S.id
     WHERE id = ?
     ORDER BY sale_id, productId`, [id]);
   return sales;
