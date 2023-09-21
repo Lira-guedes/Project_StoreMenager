@@ -12,7 +12,14 @@ const findByIdSalesController = async (req, res) => {
   return res.status(statusHTTP(status)).json(data);
 };
 
+const postSales = async (req, res) => {
+  const { name } = req.body;
+  const data = await salesService.postNewSales(name);
+  return res.status(201).json(data);
+};
+
 module.exports = {
   findAllSalesController,
   findByIdSalesController,
+  postSales,
 };

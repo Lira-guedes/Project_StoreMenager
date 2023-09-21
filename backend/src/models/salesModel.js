@@ -19,7 +19,13 @@ const findByIdSalesModel = async (id) => {
   return sales;
 };
 
+const postSalesModel = async (sale) => {
+  const [sales] = await connection.execute('INSERT INTO sales VALUES (?)', [sale]);
+  return { id: sales.insertId, sale };
+};
+
 module.exports = {
   findAllSalesModel,
   findByIdSalesModel,
+  postSalesModel,
 };
