@@ -16,7 +16,7 @@ describe('Service Sales tests', function () {
     it('Retorna venda pelo id com sucesso', async function () {
     sinon.stub(salesModel, 'findByIdSalesModel').resolves(salesMock.sales[0]);
     const res = await salesService.findByIdSalesService(1);
-
+                                                                                                                                                                                              
     expect(res).to.be.deep.equal(salesMock.salesIdServiceMock);
   });
     it('Retorna venda pelo id sem sucesso', async function () {

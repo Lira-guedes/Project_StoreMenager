@@ -13,8 +13,8 @@ const findByIdSalesController = async (req, res) => {
 };
 
 const postSales = async (req, res) => {
-  const { name } = req.body;
-  const data = await salesService.postNewSales(name);
+  const sale = req.body;
+  const { data } = await salesService.postNewSales(sale);
   return res.status(201).json(data);
 };
 

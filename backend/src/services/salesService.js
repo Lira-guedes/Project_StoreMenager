@@ -11,7 +11,14 @@ const findByIdSalesService = async (id) => {
   return { status: 'SUCCESSFUL', data: sale };
 };
 
-const postNewSales = (name) => salesModel.postSalesModel(name);
+const postNewSales = async (sale) => {
+  try {
+    const sales = await salesModel.postSalesModel(sale);
+    return { status: 'CREATED', data: sales };
+  } catch (error) {
+    return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
+  }
+};
 
 module.exports = {
   findAllSalesService,

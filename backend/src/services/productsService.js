@@ -13,8 +13,17 @@ const findByIdService = async (id) => {
 
 const postNewProducts = (name) => productsModel.postProductsModel(name);
 
+const deleteProductsService = async (id) => {
+  const products = await productsModel.findByIdModel(id);
+  if (!products) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
+
+  await productsModel.deleteProductsModel(id);
+  return { status: 'DELETED' }; 
+};
+
 module.exports = {
   findAllService,
   findByIdService,
   postNewProducts,
+  deleteProductsService,
 };

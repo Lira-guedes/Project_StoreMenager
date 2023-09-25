@@ -15,8 +15,13 @@ const postProductsModel = async (name) => {
   return { id: product.insertId, name };
 };
 
+const deleteProductsModel = async (id) => {
+ await connection.execute('DELETE FROM products WHERE id = (?)', [id]);
+};
+
 module.exports = {
   findAllModel,
   findByIdModel,
   postProductsModel,
+  deleteProductsModel,
 };

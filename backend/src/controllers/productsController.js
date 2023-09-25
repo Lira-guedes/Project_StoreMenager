@@ -18,8 +18,15 @@ const postProducts = async (req, res) => {
   return res.status(201).json(data);
 };
 
+const deleteProducts = async (req, res) => {
+ const { id } = req.params;
+  const { status, data } = await productsService.deleteProductsService(id);
+  return res.status(statusHTTP(status)).json(data);
+};
+
 module.exports = {
   findAllController,
   findByIdController,
   postProducts,
+  deleteProducts,
 };
