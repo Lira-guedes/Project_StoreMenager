@@ -4,6 +4,7 @@ const httpStatusMap = {
   NOT_FOUND: 404,
   CONFLICT: 409,
   INVALID_VALUE: 422,
+  DELETED: 204,
 };
 
 const statusHTTP = (status) => httpStatusMap[status] || 500;

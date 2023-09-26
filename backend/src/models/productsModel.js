@@ -16,7 +16,7 @@ const postProductsModel = async (name) => {
 };
 
 const deleteProductsModel = async (id) => {
- await connection.execute('DELETE FROM products WHERE id = (?)', [id]);
+    await connection.execute('DELETE FROM products WHERE id = (?)', [id]);
 };
 
 module.exports = {

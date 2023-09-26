@@ -1,4 +1,5 @@
 const salesModel = require('../models/salesModel');
+const productsModel = require('../models/productsModel');
 
 const findAllSalesService = async () => {
   const sale = await salesModel.findAllSalesModel();
@@ -12,12 +13,12 @@ const findByIdSalesService = async (id) => {
 };
 
 const postNewSales = async (sale) => {
-  try {
+  const products = sale.map(({ productId }) => productsModel.findByIdModel(productId));
+  const productNotFound = (await Promise.all(products)).some((product) => !product);
+
+   if (productNotFound) return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
     const sales = await salesModel.postSalesModel(sale);
     return { status: 'CREATED', data: sales };
-  } catch (error) {
-    return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
-  }
 };
 
 module.exports = {

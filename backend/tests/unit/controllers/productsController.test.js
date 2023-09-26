@@ -22,7 +22,7 @@ describe('Controller Products tests', function () {
     expect(res.status).to.have.been.calledWith(200);
   });
     it('Retorna status 200 quando encontra produto pelo id com sucesso', async function () {
-    sinon.stub(productsService, 'findAllService').resolves(productsMock.productsServiceMock);
+    sinon.stub(productsService, 'findByIdService').resolves(productsMock.productsIdServiceMock);
     const req = { params: { id: 1 } };
     const res = {
       status: sinon.stub().returnsThis(),

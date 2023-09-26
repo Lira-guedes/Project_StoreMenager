@@ -14,8 +14,8 @@ const findByIdSalesController = async (req, res) => {
 
 const postSales = async (req, res) => {
   const sale = req.body;
-  const { data } = await salesService.postNewSales(sale);
-  return res.status(201).json(data);
+  const { status, data } = await salesService.postNewSales(sale);
+  return res.status(statusHTTP(status)).json(data);
 };
 
 module.exports = {
