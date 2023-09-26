@@ -43,16 +43,16 @@ describe('Controller Products tests', function () {
 
     expect(res.status).to.have.been.calledWith(404);
 });
-    // it.only('Testa o método delete', async function () {
-    //   sinon.stub(productsService, 'deleteProductsService').resolves({ status: 'DELETED' });
-    //   const req = { params: { id: 1 } };
-    //   const res = {
-    //     status: sinon.stub().returnsThis(),
-    //     json: sinon.stub(),
-    //   };
-    //   await productsController.deleteProducts(req, res);
-    //   expect(res.status).to.have.been.calledWith(204);
-    // });
+    it('Testa o método delete', async function () {
+      sinon.stub(productsService, 'deleteProductsService').resolves({ status: 'DELETED' });
+      const req = { params: { id: 1 } };
+      const res = {
+        status: sinon.stub().returnsThis(),
+        json: sinon.stub(),
+      };
+      await productsController.deleteProducts(req, res);
+      expect(res.status).to.have.been.calledWith(204);
+    });
   afterEach(function () {
     sinon.restore();
   });

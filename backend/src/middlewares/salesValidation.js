@@ -1,6 +1,6 @@
 const salesValidation = (req, res, next) => {
   const products = req.body;
-console.log(products);
+  
   if (products.some(({ productId }) => productId === undefined)) {
     return res.status(400).json({ message: '"productId" is required' });
   }
